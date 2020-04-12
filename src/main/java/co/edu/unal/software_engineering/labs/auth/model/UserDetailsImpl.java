@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.List;
 
 
-public class UserDetailsImpl implements UserDetails{
+public class    UserDetailsImpl implements UserDetails{
 
     private String username;
     private String password;

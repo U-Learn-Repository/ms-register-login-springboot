@@ -1,4 +1,5 @@
 
+
 DROP TABLE IF EXISTS "labs"."public"."user_role";
 DROP TABLE IF EXISTS "labs"."public"."user";
 DROP TABLE IF EXISTS "labs"."public"."role";

@@ -61,4 +61,15 @@ public class UserController{
         return new ResponseEntity( HttpStatus.CREATED );
     }
 
+    @PostMapping( value = { "/login" } )
+    public ResponseEntity loginUser( @RequestBody LoginUserPOJO userPOJO){
+        User existingUser = userService.findByUsername( userPOJO.getUsername() );
+        if( passwordEncoder.matches(userPOJO.getPassword(), existingUser.getPassword())){
+            return new ResponseEntity(HttpStatus.OK);
+        }else{
+            return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+        }
+    }
+
+
 }

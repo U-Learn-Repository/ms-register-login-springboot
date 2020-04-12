@@ -1,0 +1,36 @@
+version: "3"
+services:
+  postgres:
+    build: postgres/
+    image: postgres:latest
+    network_mode: bridge
+    container_name: postgres
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    expose:
+      - 5432
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=0134
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=labs
+    restart: always
+    stop_grace_period: 120s
+  # APP*****************************************
+  springbootapp:
+    build: app/
+    image: springbootapp:latest
+    network_mode: bridge
+    container_name: springbootapp
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    links:
+      - postgres
+volumes:
+  postgres-data:
