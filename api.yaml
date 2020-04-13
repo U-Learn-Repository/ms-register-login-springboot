@@ -1,0 +1,140 @@
+#Test with: http://editor.swagger.io/
+
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Microservice for register and login
+  description: Java Springboot + PostgreSQL
+  license:
+    name: ULearn, 2020-I
+host: host:8080
+basePath: /
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+
+  /roles:
+    get:
+      summary: Gets all the existing roles
+      operationId: getAllRoles
+      
+      responses:
+        '200':
+          description:  OK
+          schema:
+            $ref: '#/definitions/RolesList'
+
+  /registro/nuevo-usuario/rol/{role-id}:
+    post:
+      summary: Registers and username with the given role and info
+      operationId: registerNewUser
+      parameters:
+        - name: role-id
+          required: true
+          in: path
+          description: The id of the role to be associated with the user
+          type: integer
+        - name: user
+          in: body
+          required: true
+          description: User Object
+          schema:
+            $ref: '#/definitions/UserInput'
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+    
+  /registro/usuario/rol/{role-id}:
+    post:
+      summary: Associates a new role to an existing user
+      operationId: registerRoleToUser
+      parameters:
+        - name: role-id
+          required: true
+          in: path
+          description: The id of the role to be associated with the user
+          type: integer
+        - name: userCredential
+          in: body
+          required: true
+          description: UserCredential object
+          schema:
+            $ref: '#/definitions/UserCredential'
+        
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+  
+  /login:
+    post:
+      summary: Validates the username and password for a login
+      operationId: loginUser
+      parameters:
+        - name: userCredential
+          in: body
+          required: true
+          description: UserCredential object
+          schema:
+            $ref: '#/definitions/UserCredential'
+      responses:
+        '200':
+          description: OK
+        '500':
+          description: Server internal error
+          
+    
+definitions:
+
+  # Users
+  Role:
+    type: object
+    properties:
+      id:
+        type: integer
+      rolename:
+        type: string
+  
+  RolesList:
+    type: object
+    required:
+      - total
+      - list
+    properties:
+      total:
+        type: number
+      list:
+        type: array
+        items:
+          $ref: '#/definitions/Role'
+  
+      
+  UserInput:
+    type: object
+    properties:
+      names:
+        type: string
+      surnames:
+        type: string
+      username:
+        type: string
+      password:
+        type: string
+
+  UserCredential:
+    type: object
+    properties:
+      username:
+        type: string
+      password:
+        type: string
+
