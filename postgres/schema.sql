@@ -10,11 +10,12 @@ DROP TABLE IF EXISTS "labs"."public"."role";
 -- ---------------------------- --
 CREATE TABLE IF NOT EXISTS "labs"."public"."user"
 (
-    "user_id"  SERIAL       NOT NULL,
-    "username" VARCHAR(10)  NOT NULL,
-    "password" VARCHAR(256) NOT NULL,
-    "names"    VARCHAR(100) NOT NULL,
-    "surnames" VARCHAR(100) NOT NULL,
+    "user_id"       SERIAL          NOT NULL,
+    "username"      VARCHAR(10)     NOT NULL,
+    "id_documment"  INTEGER         NOT NULL,
+    "password"      VARCHAR(256)    NOT NULL,
+    "names"         VARCHAR(100)    NOT NULL,
+    "surnames"      VARCHAR(100)    NOT NULL,
     PRIMARY KEY ("user_id")
 );
 -- ---------------------------- --

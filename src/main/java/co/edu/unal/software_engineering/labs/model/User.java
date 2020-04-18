@@ -29,6 +29,8 @@ public class User implements Serializable{
 
     private String names;
 
+    private int idDocumment;
+
     @JsonIgnore
     private String password;
 
@@ -101,6 +103,14 @@ public class User implements Serializable{
 
     public void setRoles( List<Role> roles ){
         this.roles = roles;
+    }
+
+    public int getIdDocumment() {
+        return idDocumment;
+    }
+
+    public void setIdDocumment(int idDocumment) {
+        this.idDocumment = idDocumment;
     }
 
     /**

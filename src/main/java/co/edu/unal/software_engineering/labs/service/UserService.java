@@ -1,9 +1,12 @@
 package co.edu.unal.software_engineering.labs.service;
 
+import co.edu.unal.software_engineering.labs.model.Role;
 import co.edu.unal.software_engineering.labs.model.User;
 import co.edu.unal.software_engineering.labs.pojo.RegisterUserPOJO;
 import co.edu.unal.software_engineering.labs.repository.UserRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Service
@@ -34,6 +37,14 @@ public class UserService{
                     && !user.getSurnames( ).trim( ).isEmpty( );
         }
         return correctness;
+    }
+
+    public List<User> getAll( ){
+        return userRepository.findAll( );
+    }
+
+    public User findById( Integer id ){
+        return userRepository.findById( id ).orElse( null );
     }
 
 }

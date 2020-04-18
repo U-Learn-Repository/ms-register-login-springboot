@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
+import java.util.List;
 
 
 @CrossOrigin
@@ -41,6 +42,7 @@ public class UserController{
         newUser.setNames( userPOJO.getNames( ).toUpperCase( ) );
         newUser.setSurnames( userPOJO.getSurnames( ).toUpperCase( ) );
         newUser.setUsername( userPOJO.getUsername( ).toLowerCase( ) );
+        newUser.setIdDocumment( userPOJO.getId_documment());
         newUser.setPassword( passwordEncoder.encode( userPOJO.getPassword( ) ) );
         newUser.setRoles( Collections.singletonList( role ) );
         userService.save( newUser );
@@ -70,6 +72,21 @@ public class UserController{
             return new ResponseEntity(HttpStatus.UNAUTHORIZED);
         }
     }
+
+    @GetMapping( value =  { "/usuarios" } )
+    public List<User> getAllUsers( ){
+        return userService.getAll( );
+    }
+
+    @GetMapping( value = { "/buscarUsuario/{Id}"})
+    public Object getUserById(@PathVariable Integer Id){
+        User user = userService.findById(Id);
+        if(user !=null) {
+            return user;
+        }else{
+             return new ResponseEntity(HttpStatus.BAD_REQUEST);
+            }
+       }
 
 
 }

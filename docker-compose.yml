@@ -19,7 +19,7 @@ services:
     stop_grace_period: 120s
   # APP*****************************************
   springbootapp:
-    build: app/
+    build: target/
     image: springbootapp:latest
     network_mode: bridge
     container_name: springbootapp
