@@ -4,7 +4,7 @@ services:
     build: postgres/
     image: postgres:latest
     network_mode: bridge
-    container_name: postgres
+    container_name: postgres_login
     volumes:
       - postgres-data:/var/lib/postgresql/data
     expose:
@@ -23,7 +23,7 @@ services:
     build: app/
     image: springbootapp:latest
     network_mode: bridge
-    container_name: springbootapp
+    container_name: springbootapp_login
     expose:
       - 6665
     ports:
