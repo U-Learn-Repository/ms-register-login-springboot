@@ -2,6 +2,7 @@ package co.edu.unal.software_engineering.labs.pojo;
 
 public class RegisterUserPOJO{
 
+    private  int id;
     private String names;
     private int id_documment;
     private String password;
@@ -48,5 +49,13 @@ public class RegisterUserPOJO{
 
     public void setId_documment(int id_documment) {
         this.id_documment = id_documment;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

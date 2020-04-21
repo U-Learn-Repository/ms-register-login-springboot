@@ -8,13 +8,14 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
     expose:
-      - 5432
+      - 6664
     ports:
-      - 5432:5432
+      - 6664:6664
     environment:
       - POSTGRES_PASSWORD=0134
       - POSTGRES_USER=postgres
       - POSTGRES_DB=labs
+    command: postgres -c port=6664
     restart: always
     stop_grace_period: 120s
   # APP*****************************************
@@ -24,9 +25,9 @@ services:
     network_mode: bridge
     container_name: springbootapp
     expose:
-      - 8080
+      - 6665
     ports:
-      - 8080:8080
+      - 6665:6665
     restart: unless-stopped
     depends_on:
       - postgres

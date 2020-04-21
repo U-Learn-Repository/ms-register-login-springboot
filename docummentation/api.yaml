@@ -1,0 +1,742 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: ULearnRegister
+  description: This API handles registration for the ULearn application. The user can register as two differet roles, as "estudiante" or as "teacher". Also, a new role can be assigned to an existing user.
+  contact: {}
+host: 192.168.99.100:6665
+basePath: /
+securityDefinitions:
+  auth:
+    type: oauth2
+    flow: implicit
+    authorizationUrl: http://example.com/auth
+    scopes: {}
+schemes:
+- http
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  /roles:
+    get:
+      description: Gets all the roles stored at the role table in the database. In this case, "estudiante" and "teacher",
+      summary: Get all roles
+      tags:
+      - RoleController
+      operationId: Getallroles
+      deprecated: false
+      produces:
+      - application/json;charset=UTF-8
+      parameters: []
+      responses:
+        200:
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Getallrole'
+          examples:
+            application/json;charset=UTF-8:
+            - id: 1
+              roleName: Estudiante
+            - id: 2
+              roleName: Profesor
+          headers:
+            X-Content-Type-Options:
+              type: string
+              default: nosniff
+            X-XSS-Protection:
+              type: string
+              default: 1; mode=block
+            Cache-Control:
+              type: string
+              default: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              type: string
+              default: no-cache
+            Expires:
+              type: string
+              default: 0
+            X-Frame-Options:
+              type: string
+              default: DENY
+            Transfer-Encoding:
+              type: string
+              default: chunked
+            Date:
+              type: string
+              default: Tue, 21 Apr 2020 02:06:52 GMT
+  /registro/nuevo-usuario/rol/1:
+    post:
+      description: Register a new user in the user table in the database, associating the "estudiante" role to it.
+      summary: Register student
+      tags:
+      - UserController
+      operationId: Registerstudent
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: Content-Type
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/RegisterstudentRequest'
+      responses:
+        201:
+          description: ''
+          schema:
+            type: object
+          headers:
+            X-Content-Type-Options:
+              type: string
+              default: nosniff
+            X-XSS-Protection:
+              type: string
+              default: 1; mode=block
+            Cache-Control:
+              type: string
+              default: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              type: string
+              default: no-cache
+            Expires:
+              type: string
+              default: 0
+            X-Frame-Options:
+              type: string
+              default: DENY
+            Content-Length:
+              type: string
+              default: 0
+            Date:
+              type: string
+              default: Tue, 21 Apr 2020 02:13:36 GMT
+  /registro/nuevo-usuario/rol/2:
+    post:
+      description: Register a new user in the user table in the database, associating the "profesor" role to it.
+      summary: Register teacher
+      tags:
+      - UserController
+      operationId: Registerteacher
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: Content-Type
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/RegisterteacherRequest'
+      responses:
+        201:
+          description: ''
+          schema:
+            type: object
+          headers:
+            X-Content-Type-Options:
+              type: string
+              default: nosniff
+            X-XSS-Protection:
+              type: string
+              default: 1; mode=block
+            Cache-Control:
+              type: string
+              default: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              type: string
+              default: no-cache
+            Expires:
+              type: string
+              default: 0
+            X-Frame-Options:
+              type: string
+              default: DENY
+            Content-Length:
+              type: string
+              default: 0
+            Date:
+              type: string
+              default: Tue, 21 Apr 2020 02:14:10 GMT
+  /registro/usuario/rol/1:
+    post:
+      description: Gives a new role to an existing user. In this case, the role "estudiante" to the user "teacher"
+      summary: Associate role for existing user
+      tags:
+      - UserController
+      operationId: Associateroleforexistinguser
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: Content-Type
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/AssociateroleforexistinguserRequest'
+      responses:
+        201:
+          description: ''
+          schema:
+            type: object
+          headers:
+            X-Content-Type-Options:
+              type: string
+              default: nosniff
+            X-XSS-Protection:
+              type: string
+              default: 1; mode=block
+            Cache-Control:
+              type: string
+              default: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              type: string
+              default: no-cache
+            Expires:
+              type: string
+              default: 0
+            X-Frame-Options:
+              type: string
+              default: DENY
+            Content-Length:
+              type: string
+              default: 0
+            Date:
+              type: string
+              default: Tue, 21 Apr 2020 02:14:46 GMT
+  /login:
+    post:
+      description: Logins with correct username and password.
+      summary: Successfull login
+      tags:
+      - UserController
+      operationId: Successfulllogin
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/SuccessfullloginRequest'
+      responses:
+        200:
+          description: ''
+          schema:
+            type: object
+          headers:
+            X-Content-Type-Options:
+              type: string
+              default: nosniff
+            X-XSS-Protection:
+              type: string
+              default: 1; mode=block
+            Cache-Control:
+              type: string
+              default: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              type: string
+              default: no-cache
+            Expires:
+              type: string
+              default: 0
+            X-Frame-Options:
+              type: string
+              default: DENY
+            Content-Length:
+              type: string
+              default: 0
+            Date:
+              type: string
+              default: Tue, 21 Apr 2020 02:15:07 GMT
+  /usuarios:
+    get:
+      description: Shows all the registrated users and all their corresponding info.
+      summary: Get all users
+      tags:
+      - UserController
+      operationId: Getallusers
+      deprecated: false
+      produces:
+      - application/json;charset=UTF-8
+      parameters: []
+      responses:
+        200:
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Getalluser'
+          examples:
+            application/json;charset=UTF-8:
+            - id: 1
+              names: USUARIO ESTUDIANTE1
+              idDocumment: 0
+              surnames: PRUEBA TEMPORAL1
+              username: student1
+            - id: 2
+              names: USUARIO ESTUDIANTE2
+              idDocumment: 0
+              surnames: PRUEBA TEMPORAL2
+              username: student2
+            - id: 34
+              names: USUARIO ESTUDIANTE3
+              idDocumment: 12312312
+              surnames: PRUEBA TEMPORAL3
+              username: student3
+            - id: 35
+              names: USUARIO ESTUDIANTE4
+              idDocumment: 12312312
+              surnames: PRUEBA TEMPORAL4
+              username: student4
+            - id: 36
+              names: USUARIO PROFESOR1
+              idDocumment: 0
+              surnames: PRUEBA TEMPORAL1
+              username: teacher1
+            - id: 37
+              names: USUARIO ESTUDIANTE4
+              idDocumment: 12312312
+              surnames: PRUEBA TEMPORAL4
+              username: student7
+            - id: 38
+              names: JULIAN
+              idDocumment: 1023949483
+              surnames: BELTRAN
+              username: jrbeltranl
+            - id: 42
+              names: JULIAN
+              idDocumment: 1023949483
+              surnames: BELTRAN
+              username: graphql
+            - id: 43
+              names: JULIAN
+              idDocumment: 1023949483
+              surnames: BELTRAN
+              username: graphql1
+            - id: 44
+              names: JULIAN
+              idDocumment: 1023949483
+              surnames: BELTRAN
+              username: graphql2
+            - id: 45
+              names: JULIAN
+              idDocumment: 1023949483
+              surnames: BELTRAN
+              username: graphql5
+            - id: 46
+              names: JULIAN
+              idDocumment: 1023949483
+              surnames: BELTRAN
+              username: graphql6
+            - id: 47
+              names: JULIAN
+              idDocumment: 1023949483
+              surnames: BELTRAN
+              username: graphql7
+            - id: 48
+              names: JULIAN
+              idDocumment: 1023949483
+              surnames: BELTRAN
+              username: graphql8
+            - id: 49
+              names: JULIAN
+              idDocumment: 1023949483
+              surnames: BELTRAN
+              username: graphql9
+            - id: 50
+              names: JULIAN
+              idDocumment: 1023949483
+              surnames: BELTRAN
+              username: graphql10
+            - id: 51
+              names: JULIAN
+              idDocumment: 1023949483
+              surnames: BELTRAN
+              username: graphql11
+            - id: 52
+              names: JULIAN
+              idDocumment: 1023949483
+              surnames: BELTRAN
+              username: graphql12
+            - id: 53
+              names: JULIAN
+              idDocumment: 1023949483
+              surnames: BELTRAN
+              username: graphql13
+            - id: 54
+              names: JULIAN
+              idDocumment: 1023949483
+              surnames: BELTRAN
+              username: graphql14
+            - id: 55
+              names: JULIAN
+              idDocumment: 1023949483
+              surnames: BELTRAN
+              username: graphql15
+            - id: 56
+              names: JULIAN
+              idDocumment: 1023949483
+              surnames: BELTRAN
+              username: graphql16
+            - id: 57
+              names: JULIAN
+              idDocumment: 1023949483
+              surnames: BELTRAN
+              username: graphql17
+            - id: 58
+              names: JULIAN
+              idDocumment: 1023949483
+              surnames: BELTRAN
+              username: graphql18
+            - id: 59
+              names: JULIAN
+              idDocumment: 1023949483
+              surnames: BELTRAN
+              username: graphql19
+            - id: 60
+              names: JULIAN
+              idDocumment: 1023949483
+              surnames: BELTRAN
+              username: graphql20
+            - id: 61
+              names: JULIAN
+              idDocumment: 1023949483
+              surnames: BELTRAN
+              username: graphql21
+            - id: 62
+              names: JULIAN
+              idDocumment: 1023949483
+              surnames: BELTRAN
+              username: graphql22
+            - id: 63
+              names: JULIAN
+              idDocumment: 1023949483
+              surnames: BELTRAN
+              username: graphql23
+            - id: 64
+              names: JULIAN
+              idDocumment: 1023949483
+              surnames: BELTRAN
+              username: graphql24
+            - id: 65
+              names: JULIAN
+              idDocumment: 1023949483
+              surnames: BELTRAN
+              username: graphql25
+            - id: 66
+              names: JULIAN
+              idDocumment: 1023949483
+              surnames: BELTRAN
+              username: graphql26
+            - id: 99
+              names: USUARIO ESTUDIANTE4
+              idDocumment: 12312312
+              surnames: PRUEBA TEMPORAL4
+              username: student10
+            - id: 100
+              names: USUARIO PROFESOR1
+              idDocumment: 0
+              surnames: PRUEBA TEMPORAL1
+              username: teacher10
+          headers:
+            X-Content-Type-Options:
+              type: string
+              default: nosniff
+            X-XSS-Protection:
+              type: string
+              default: 1; mode=block
+            Cache-Control:
+              type: string
+              default: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              type: string
+              default: no-cache
+            Expires:
+              type: string
+              default: 0
+            X-Frame-Options:
+              type: string
+              default: DENY
+            Transfer-Encoding:
+              type: string
+              default: chunked
+            Date:
+              type: string
+              default: Tue, 21 Apr 2020 02:15:37 GMT
+  /buscarUsuario/2:
+    get:
+      description: >-
+        /buscarUsuario/{Id}
+
+
+        Busca un usuario registrado por su Id, si este existe devuelve su información, de lo contrario devuelve 400 BAD REQUEST
+      summary: Find user by ID
+      tags:
+      - UserController
+      operationId: FinduserbyID
+      deprecated: false
+      produces:
+      - application/json;charset=UTF-8
+      parameters: []
+      responses:
+        200:
+          description: ''
+          schema:
+            $ref: '#/definitions/FinduserbyID'
+          examples:
+            application/json;charset=UTF-8:
+              id: 2
+              names: USUARIO ESTUDIANTE2
+              idDocumment: 0
+              surnames: PRUEBA TEMPORAL2
+              username: student2
+          headers:
+            X-Content-Type-Options:
+              type: string
+              default: nosniff
+            X-XSS-Protection:
+              type: string
+              default: 1; mode=block
+            Cache-Control:
+              type: string
+              default: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              type: string
+              default: no-cache
+            Expires:
+              type: string
+              default: 0
+            X-Frame-Options:
+              type: string
+              default: DENY
+            Transfer-Encoding:
+              type: string
+              default: chunked
+            Date:
+              type: string
+              default: Tue, 21 Apr 2020 02:17:26 GMT
+definitions:
+  Getallrole:
+    title: Getallrole
+    example:
+      id: 1
+      roleName: Estudiante
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      roleName:
+        type: string
+    required:
+    - id
+    - roleName
+  RegisterstudentRequest:
+    title: RegisterstudentRequest
+    example:
+      names: Usuario Estudiante4
+      surnames: Prueba Temporal4
+      id_documment: 12312312
+      username: student
+      password: 12345678
+    type: object
+    properties:
+      names:
+        type: string
+      surnames:
+        type: string
+      id_documment:
+        type: string
+      username:
+        type: string
+      password:
+        type: string
+    required:
+    - names
+    - surnames
+    - id_documment
+    - username
+    - password
+  RegisterteacherRequest:
+    title: RegisterteacherRequest
+    example:
+      names: Usuario Profesor1
+      surnames: Prueba Temporal1
+      username: teacher10
+      password: 87654321
+    type: object
+    properties:
+      names:
+        type: string
+      surnames:
+        type: string
+      username:
+        type: string
+      password:
+        type: string
+    required:
+    - names
+    - surnames
+    - username
+    - password
+  AssociateroleforexistinguserRequest:
+    title: AssociateroleforexistinguserRequest
+    example:
+      username: teacher10
+      password: 87654321
+    type: object
+    properties:
+      username:
+        type: string
+      password:
+        type: string
+    required:
+    - username
+    - password
+  SuccessfullloginRequest:
+    title: SuccessfullloginRequest
+    example:
+      username: teacher1
+      password: 87654321
+    type: object
+    properties:
+      username:
+        type: string
+      password:
+        type: string
+    required:
+    - username
+    - password
+  FailedloginRequest:
+    title: FailedloginRequest
+    example:
+      username: teacher
+      password: 87654321
+    type: object
+    properties:
+      username:
+        type: string
+      password:
+        type: string
+    required:
+    - username
+    - password
+  Failedlogin:
+    title: Failedlogin
+    example:
+      timestamp: 2020-04-21T02:15:25.539+00:00
+      status: 500
+      error: Internal Server Error
+      message: No message available
+      path: /login
+    type: object
+    properties:
+      timestamp:
+        type: string
+      status:
+        type: integer
+        format: int32
+      error:
+        type: string
+      message:
+        type: string
+      path:
+        type: string
+    required:
+    - timestamp
+    - status
+    - error
+    - message
+    - path
+  Getalluser:
+    title: Getalluser
+    example:
+      id: 1
+      names: USUARIO ESTUDIANTE1
+      idDocumment: 0
+      surnames: PRUEBA TEMPORAL1
+      username: student1
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      names:
+        type: string
+      idDocumment:
+        type: integer
+        format: int32
+      surnames:
+        type: string
+      username:
+        type: string
+    required:
+    - id
+    - names
+    - idDocumment
+    - surnames
+    - username
+  FinduserbyID:
+    title: FinduserbyID
+    example:
+      id: 2
+      names: USUARIO ESTUDIANTE2
+      idDocumment: 0
+      surnames: PRUEBA TEMPORAL2
+      username: student2
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      names:
+        type: string
+      idDocumment:
+        type: integer
+        format: int32
+      surnames:
+        type: string
+      username:
+        type: string
+    required:
+    - id
+    - names
+    - idDocumment
+    - surnames
+    - username
+security:
+- auth: []
+tags:
+- name: RoleController
+  description: Requests referent to the controller for the roles.
+- name: UserController
+  description: Requests referents to the controller for the users.

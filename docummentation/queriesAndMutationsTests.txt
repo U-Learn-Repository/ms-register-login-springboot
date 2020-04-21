@@ -1,0 +1,63 @@
+Querys and mutations tests:
+
+query{
+  buscarUsuario(userId: 2){
+    names
+    id
+    idDocumment
+  }
+  listarUsuarios{
+    names
+  }
+}
+
+
+mutation{
+  registrarEstudiante( user:{
+    names: "Julian"
+    surnames: "Beltran"
+    id_documment: 1023949483
+    username: "graphql25"
+    password: "passwor123"
+   
+  }){
+    username
+  }   
+
+registrarProfesor( user:{
+    names: "Julian"
+    surnames: "Beltran"
+    id_documment: 1023949483
+    username: "graphql25"
+    password: "passwor123"
+   
+  }){
+    username
+  }   
+
+asginarRolEstudiante( credentials:{
+        username: "teacher1"
+    		password: "87654321"
+   
+  }){
+    username
+  }   
+
+asginarRolEstudiante( credentials:{
+        username: "teacher1"
+    		password: "87654321"
+   
+  }){
+    username
+  }   
+
+  login( credentials:{
+        username: "student7"
+    		password: "12345678"
+   
+  }){
+    username
+  }
+}
+  
+  
