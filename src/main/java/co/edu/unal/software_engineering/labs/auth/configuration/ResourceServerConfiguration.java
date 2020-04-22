@@ -9,7 +9,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 @EnableResourceServer
 public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter{
 
-    private final static String[] publicResources = new String[]{ "/registro/**", "/roles", "/login", "/usuarios" , "/buscarUsuario/**", "/buscarUsuario" };
+    private final static String[] publicResources = new String[]{ "/registro/**", "/oauth/token", "/roles", "/login", "/usuarios" , "/buscarUsuario/**", "/buscarUsuario" };
     private final static String[] userResources = new String[]{ "/usuario/**" };
     private final static String[] teacherResources = new String[]{ "/profesor/**" };
     private final static String[] studentResources = new String[]{ "/estudiante/**" };
@@ -21,8 +21,8 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 .antMatchers( publicResources ).permitAll( )
                 .antMatchers( userResources ).authenticated( )
                 .antMatchers( teacherResources ).hasAuthority( "ROLE_PROFESOR" )
-                .antMatchers( studentResources ).hasAuthority( "ROLE_ESTUDIANTE" )
-                .anyRequest().authenticated();
+                .antMatchers( studentResources ).hasAuthority( "ROLE_ESTUDIANTE" );
+                //.anyRequest().authenticated();
 
 
     }
