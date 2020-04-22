@@ -1,10 +1,10 @@
 version: "3"
 services:
-  postgres:
+  ULearn_registerLogin_db:
     build: postgres/
     image: postgres:latest
     network_mode: bridge
-    container_name: postgres_login
+    container_name: ULearn_registerLogin_db
     volumes:
       - postgres-data:/var/lib/postgresql/data
     expose:
@@ -19,19 +19,19 @@ services:
     restart: always
     stop_grace_period: 120s
   # APP*****************************************
-  springbootapp:
+  ULearn_registerLogin_ms:
     build: app/
     image: springbootapp:latest
     network_mode: bridge
-    container_name: springbootapp_login
+    container_name: ULearn_registerLogin_ms
     expose:
       - 6665
     ports:
       - 6665:6665
     restart: unless-stopped
     depends_on:
-      - postgres
+      - ULearn_registerLogin_db
     links:
-      - postgres
+      - ULearn_registerLogin_db
 volumes:
   postgres-data:
