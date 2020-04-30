@@ -88,7 +88,7 @@ public class UserController{
         }
     }
 
-    @GetMapping( value = { "/roleById/{Id}"})
+    @GetMapping( value = { "/rolPorId/{Id}"})
     public Object getUserRoles(@PathVariable Integer Id){
         User user = userService.findById(Id);
         if(user !=null) {
