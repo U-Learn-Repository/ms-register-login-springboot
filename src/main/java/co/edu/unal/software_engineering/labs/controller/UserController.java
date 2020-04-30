@@ -85,8 +85,22 @@ public class UserController{
             return user;
         }else{
              return new ResponseEntity(HttpStatus.BAD_REQUEST);
-            }
-       }
+        }
+    }
+
+    @GetMapping( value = { "/roleById/{Id}"})
+    public Object getUserRoles(@PathVariable Integer Id){
+        User user = userService.findById(Id);
+        if(user !=null) {
+            return user.getRoles();
+        }else{
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
+
+
 
 
 }
