@@ -11,6 +11,13 @@ query{
   }
 }
 
+query{
+  obtenerRolPorId(userId: 2){
+    id
+    roleName
+  }
+}
+
 
 mutation{
   registrarEstudiante( user:{
@@ -22,7 +29,8 @@ mutation{
    
   }){
     username
-  }   
+  }
+}   
 
 registrarProfesor( user:{
     names: "Julian"

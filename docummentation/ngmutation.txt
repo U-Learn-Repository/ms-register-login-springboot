@@ -1,0 +1,15 @@
+registrarEstudiante(names: string, surnames: string, id_documment: number, username: string, password: string) {     
+
+
+ mutation registrarEstudiante{
+        registrarEstudiante( user:{
+          names: "Julian"
+          surnames: "Beltran"
+          id_documment: 1023949483
+          username: "graphql25"
+          password: "passwor123"
+
+        }){
+          username
+        }
+      }
