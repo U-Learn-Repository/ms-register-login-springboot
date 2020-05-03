@@ -18,6 +18,13 @@ query{
   }
 }
 
+query{
+  ContarUsuarios{
+    id
+  }
+
+}
+
 
 mutation{
   registrarEstudiante( user:{
@@ -49,7 +56,8 @@ asginarRolEstudiante( credentials:{
    
   }){
     username
-  }   
+  }
+}  
 
 asginarRolEstudiante( credentials:{
         username: "teacher1"
@@ -67,5 +75,15 @@ asginarRolEstudiante( credentials:{
     username
   }
 }
+
+
+
+onclick = registrarEstudiante(
+    document.getElementById("names"),
+    document.getElementById("surnames"),
+    document.getElementById("id_documment"),
+    document.getElementById("username"),
+    document.getElementById("password1")
+  );
   
   

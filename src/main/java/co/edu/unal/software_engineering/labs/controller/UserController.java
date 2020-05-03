@@ -98,6 +98,12 @@ public class UserController{
         }
     }
 
+    @GetMapping( value= {"/contarUsuarios"})
+    public User contarUsuarios(){
+        List<User> users =  userService.getAll();
+        User user= users.get(users.size()-1);
+        return user;
+    }
 
 
 
