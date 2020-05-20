@@ -24,7 +24,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     private final static String[] RESOURCE_IDS = new String[] { "oauth2-resource" };
     private final static int ACCESS_TOKEN_VALIDITY_SECONDS = 1600;
 
-
+ 
     private AuthenticationManager authenticationManager;
     private PasswordEncoder passwordEncoder;
 
