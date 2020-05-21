@@ -98,6 +98,17 @@ public class UserController{
         }
     }
 
+    @GetMapping( value = {"/usuarioPorUsername/{Username}"})
+    public Object getUserByUsername(@PathVariable String Username){
+        System.out.println(Username);
+        User user = userService.findByUsername(Username);
+        if(user != null) {
+            return user;
+        }else{
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @GetMapping( value= {"/contarUsuarios"})
     public User contarUsuarios(){
         List<User> users =  userService.getAll();
