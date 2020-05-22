@@ -22,9 +22,6 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 .antMatchers( userResources ).authenticated( )
                 .antMatchers( teacherResources ).hasAuthority( "ROLE_PROFESOR" )
                 .antMatchers( studentResources ).hasAuthority( "ROLE_ESTUDIANTE" );
-                //.anyRequest().authenticated();
-
-
     }
 
 }

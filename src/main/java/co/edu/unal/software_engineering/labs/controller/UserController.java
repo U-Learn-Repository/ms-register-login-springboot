@@ -115,6 +115,11 @@ public class UserController{
         User user= users.get(users.size()-1);
         return user;
     }
+    
+    @GetMapping( value= {"/usuario/auth"})
+    public boolean validarToken(){
+        return true;
+    }
 
 
 
