@@ -1,23 +1,6 @@
 version: "3"
 services:
-  ULearn_registerLogin_db:
-    build: postgres/
-    image: postgres:latest
-    network_mode: bridge
-    container_name: ULearn_registerLogin_db
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
-    expose:
-      - 6664
-    ports:
-      - 6664:6664
-    environment:
-      - POSTGRES_PASSWORD=0134
-      - POSTGRES_USER=postgres
-      - POSTGRES_DB=labs
-    command: postgres -c port=6664
-    restart: always
-    stop_grace_period: 120s
+
   # APP*****************************************
   ULearn_registerLogin_ms:
     build: app/
@@ -29,9 +12,5 @@ services:
     ports:
       - 6665:6665
     restart: unless-stopped
-    depends_on:
-      - ULearn_registerLogin_db
-    links:
-      - ULearn_registerLogin_db
 volumes:
   postgres-data:
